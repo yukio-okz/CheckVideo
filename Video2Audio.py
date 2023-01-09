@@ -36,10 +36,14 @@ if __name__=='__main__':
             continue
         #if args is video file,add them to file list.
         if os.path.isfile(rootpath):
-            if os.path.basename(rootpath)[-4:]=='.wmv':
+            if (os.path.basename(rootpath)[-4:]=='.mp4')or\
+               (os.path.basename(rootpath)[-4:]=='.wmv'):
                 filelist.append(rootpath)
                 continue
         #if args is dir,find video files in it.
+        tmplist=glob.glob(os.path.join(rootpath,'**/*.mp4'),recursive=True)
+        if len(tmplist)>0:
+            filelist.extend(tmplist)
         tmplist=glob.glob(os.path.join(rootpath,'**/*.wmv'),recursive=True)
         if len(tmplist)>0:
             filelist.extend(tmplist)
