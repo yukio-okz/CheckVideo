@@ -50,7 +50,7 @@ if __name__=='__main__':
     #main routine
     logging.info('%s','Convert audio start.')
     #outputRoot=r'G:\Converted'
-    outputRoot=r'E:\\'
+    outputRoot=r'../../data/audio/'
     for filename in filelist:
         basename1=os.path.basename(filename)
         rootname1=os.path.dirname(filename)
@@ -59,9 +59,12 @@ if __name__=='__main__':
         #    os.makedirs(tgtDir)
         basename2=os.path.basename(rootname1)
         outputDir=os.path.join(outputRoot,basename2)
-        if not os.path.exists(outputDir):
-            os.makedirs(outputDir)
-        tgtFileName=os.path.join(outputDir,basename2+'_'+basename1[:-4]+'.mp3')
+        if os.path.basename(filename).split('.')[1]=='wmv':
+            if not os.path.exists(outputDir):
+                os.makedirs(outputDir)
+            tgtFileName=os.path.join(outputDir,basename2+'_'+basename1[:-4]+'.mp3')
+        if os.path.basename(filename).split('.')[1]=='mp4':
+            tgtFileName=os.path.join(outputRoot,basename1[:-4]+'.mp3')
         if os.path.exists(tgtFileName):
             continue
 
